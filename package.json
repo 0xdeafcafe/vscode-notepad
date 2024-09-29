@@ -1,0 +1,91 @@
+{
+  "name": "vscode-notepad",
+  "displayName": "vscode-notepad",
+  "description": "A convenient notepad for VSCode.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Configuration",
+      "properties": {
+        "notepad.noteFolderName": {
+          "type": "string",
+          "default": ".notepad",
+          "description": "THe name of the folder to store notes in."
+        },
+        "notepad.noteFileExtension": {
+          "type": "string",
+          "default": ".md",
+          "description": "The extension to use on notes, this will affect the syntax highlighting."
+        },
+        "notepad.notePrefixFormat": {
+          "type": "string",
+          "default": "YYYY-MM-dd",
+          "description": "The format of the date prefix to add to notes. You can set an empty string here to disable the date prefix. This uses `date-fns` format tokens (not MomentJS!). You can check the format token documentation here https://date-fns.org/v4.1.0/docs/format"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "notepad.newNote",
+        "title": "New note",
+        "category": "Notepad"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "notepad.newNote",
+        "key": "ctrl+m",
+        "mac": "cmd+m"
+      }
+    ],
+    "views": {
+      "vscode-notepad": [
+        {
+          "id": "vscode-notepad",
+          "name": "Notepad"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vscode-notepad",
+          "title": "Notepad",
+          "icon": "resources/notepad-sidebar.svg"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "yarn run check-types && yarn run lint && node esbuild.mjs",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.mjs --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "yarn run check-types && yarn run lint && node esbuild.mjs --production",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@types/node": "20.x",
+    "@types/vscode": "^1.93.0",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.23.1",
+    "eslint": "^9.9.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.5.4",
+    "date-fns": "^4.1.0"
+  }
+}
