@@ -1,6 +1,6 @@
 # vscode-notepad
 
-This is a simple notepad extension for Visual Studio Code. It allows you to create, edit, and save note inside the editor.
+This is a simple notepad extension for Visual Studio Code. It allows you to create, edit, and save notes inside the editor.
 
 ## Features
 
